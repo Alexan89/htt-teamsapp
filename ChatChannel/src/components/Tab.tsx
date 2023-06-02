@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { TeamsFxContext } from "./Context";
+import Navigation from "./navigation/Navigation";
 
 export default function Tab() {
   const { themeString } = useContext(TeamsFxContext);
@@ -7,6 +8,7 @@ export default function Tab() {
     <div
       className={themeString === "default" ? "light" : themeString === "dark" ? "dark" : "contrast"}
     >
+      <Navigation />
     </div>
   );
 }
