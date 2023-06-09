@@ -20,7 +20,6 @@ const Navigation = ({ channels, setSelectedChannel }: Props) => {
 
       const [users, setUsers] = useState<User[]>([]);
 
-
       const joinChannel = (channel: Channel) => {
             const newUsers = [...(users?.filter(u => u.id !== "me") ?? [])]
             setUsers([...newUsers, { id: "me", name: "me", currentChannelId: channel.id }])
