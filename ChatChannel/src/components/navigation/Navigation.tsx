@@ -1,4 +1,4 @@
-import { makeStyles, shorthands } from "@fluentui/react-components";
+import { makeStyles } from "@fluentui/react-components";
 import { Channel } from "./channels/Channel";
 import Channels from "./channels/Channels";
 import { useState } from "react";
@@ -9,16 +9,22 @@ const useStyles = makeStyles({
             width: "300px"
       },
 });
-const Navigation = () => {
+
+type Props = {
+      channels: Channel[];
+      setSelectedChannel: (channel: Channel) => void;
+}
+
+const Navigation = ({ channels, setSelectedChannel }: Props) => {
       const styles = useStyles();
 
       const [users, setUsers] = useState<User[]>([]);
 
-      const [channels, setChannels] = useState<Channel[]>([{ name: "channel1", id: "1" }, { name: "channel2", id: "2" }, { name: "channel3", id: "3" }]);
 
       const joinChannel = (channel: Channel) => {
             const newUsers = [...(users?.filter(u => u.id !== "me") ?? [])]
             setUsers([...newUsers, { id: "me", name: "me", currentChannelId: channel.id }])
+            setSelectedChannel(channel);
       };
 
       return (
