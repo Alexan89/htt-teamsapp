@@ -15,9 +15,10 @@ const useStyles = makeStyles({
 type Props = {
       channels: Channel[];
       setSelectedChannel: (channel: Channel) => void;
+      addChannel: (channel: Channel) => void;
 }
 
-const Navigation = ({ channels, setSelectedChannel }: Props) => {
+const Navigation = ({ channels, setSelectedChannel, addChannel }: Props) => {
       const styles = useStyles();
       const { createOrGet } = useGetMeeting();
 
@@ -30,7 +31,7 @@ const Navigation = ({ channels, setSelectedChannel }: Props) => {
       };
       
       const joinCall = (channel: Channel) => {
-            createOrGet(channel.name + "-" + channel.id).then((meeting) => {
+            createOrGet(channel.name).then((meeting) => {
                   var url = meeting.joinUrl;
                   app.openLink(url);
             });
@@ -43,6 +44,7 @@ const Navigation = ({ channels, setSelectedChannel }: Props) => {
                         users={users}
                         joinChannel={joinChannel}
                         joinCall={joinCall}
+                        addChannel={addChannel}
                   />
             </div>
       )

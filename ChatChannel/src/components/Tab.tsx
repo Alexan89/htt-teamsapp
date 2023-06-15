@@ -23,15 +23,19 @@ const useGridExampleStyles = makeStyles({
 export default function Tab() {
   const { themeString } = useContext(TeamsFxContext);
   var classes = useGridExampleStyles();
-  const [channels, setChannels] = useState<Channel[]>([{ name: "channel1", id: "1" }, { name: "channel2", id: "2" }, { name: "channel3", id: "3" }]);
+  const [channels, setChannels] = useState<Channel[]>([{ name: "example", id: "1" }]);
   const [selectedChannel, setSelectedChannel] = useState<Channel | undefined>(undefined);
+
+  const addChannel = (channel: Channel) => {
+    setChannels([...channels, channel]);
+  };
 
   return (
     <div
       className={themeString === "default" ? "light" : themeString === "dark" ? "dark" : "contrast"}
     >
       <div className={classes.targetContainer}>
-        <Navigation channels={channels} setSelectedChannel={setSelectedChannel} />
+        <Navigation channels={channels} setSelectedChannel={setSelectedChannel} addChannel={addChannel} />
         <Chat selectedChannel={selectedChannel} />
       </div>
     </div>
