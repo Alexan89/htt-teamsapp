@@ -1,4 +1,4 @@
-﻿namespace ChatChannel.Services.Channel
+﻿namespace ChatChannel.Models
 {
     public class ChannelDto
     {
