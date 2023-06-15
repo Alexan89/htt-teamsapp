@@ -2,9 +2,13 @@ import { useContext, useState } from "react";
 import { TeamsFxContext } from "./Context";
 import Navigation from "./navigation/Navigation";
 import { Chat } from "./chat/Chat";
-import { makeStyles, shorthands } from "@fluentui/react-components";
+import { Button, makeStyles, shorthands } from "@fluentui/react-components";
 import TabConfig from "./TabConfig";
 import { Channel } from "./navigation/channels/Channel";
+import React from "react";
+import { axiosClient } from "../core/axiosClient";
+import { ChannelDto } from "../models/ChannelDto";
+import { BackendEndpoints } from "./BackendEndpoints";
 // import { Person } from "@microsoft/mgt-react";
 const useGridExampleStyles = makeStyles({
   targetContainer: {
@@ -20,8 +24,14 @@ const useGridExampleStyles = makeStyles({
 export default function Tab() {
   const { themeString } = useContext(TeamsFxContext);
   var classes = useGridExampleStyles();
-  const [channels, setChannels] = useState<Channel[]>([{ name: "channel1", id: "1" }, { name: "channel2", id: "2" }, { name: "channel3", id: "3" }]);
+  const [channels, setChannels] = useState<Channel[]>([]);
   const [selectedChannel, setSelectedChannel] = useState<Channel | undefined>(undefined);
+
+  React.useEffect(() => {
+    axiosClient.get(BackendEndpoints.ChannelsGet).then(response => setChannels(response.data));
+  }, [channels])
+
+
   return (
     <div
       className={themeString === "default" ? "light" : themeString === "dark" ? "dark" : "contrast"}
@@ -33,3 +43,4 @@ export default function Tab() {
     </div>
   );
 }
+

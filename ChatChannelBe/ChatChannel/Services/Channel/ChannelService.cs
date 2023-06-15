@@ -1,4 +1,6 @@
-﻿namespace ChatChannel.Services.Channel
+﻿using ChatChannel.Models;
+
+namespace ChatChannel.Services.Channel
 {
     public class ChannelService : IChannelService
     {
@@ -27,27 +29,7 @@
                 }
             };
 
-            _users = new List<UserDto>
-            {
-                new UserDto
-                {
-                    Id= "4",
-                    CurrentChannelId= "1",
-                    Name = "Alexander"
-                },
-                new UserDto
-                {
-                    Id= "5",
-                    CurrentChannelId= "2",
-                    Name = "Axel"
-                },
-                new UserDto
-                {
-                    Id= "6",
-                    CurrentChannelId= "1",
-                    Name = "Marcus"
-                }
-            };
+            _users = new List<UserDto>();
         }
 
         public Task AddChannelUserAsync(UserDto userDto)
@@ -57,9 +39,9 @@
             return Task.CompletedTask;
         }
 
-        public Task<IEnumerable<ChannelDto>> GetChannelsAsync()
+        public Task<List<ChannelDto>> GetChannelsAsync()
         {
-            return Task.FromResult(_channels.AsEnumerable());
+            return Task.FromResult(_channels);
         }
 
         public Task<IEnumerable<UserDto>> GetChannelUsersAsync()
