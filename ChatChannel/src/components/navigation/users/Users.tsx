@@ -13,8 +13,9 @@ type Props = {
 
 const useStyles = makeStyles({
     root: {
-        display: "block",
+        display: "flex",
         marginTop: "10px",
+        justifyContent: "flex-start",
     },
 });
 

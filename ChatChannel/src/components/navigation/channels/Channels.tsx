@@ -1,4 +1,5 @@
 import {
+  Button,
   makeStyles,
   shorthands,
   Tab,
@@ -23,10 +24,12 @@ type Props = {
   channels: Channel[]
   users: User[]
   joinChannel: (channel: Channel) => void
+  joinCall: (channel: Channel) => void
 }
 
 const Channels = (props: Props) => {
   const styles = useStyles();
+
   return (
     <div className={styles.root}>
       <TabList
@@ -34,8 +37,13 @@ const Channels = (props: Props) => {
       >
         {props.channels.map(channel => (
           <Tab onClick={() => props.joinChannel(channel)} key={channel.name} value={channel.name}>
-            {channel.name}
+            <>
+                {channel.name}
+                {props.users.filter(u => u.currentChannelId === channel.id).length > 0 && (
+                  <Button style={{marginInline: 12}} onClick={() => props.joinCall(channel)}>Join call</Button>
+                )}
               <Users users={props.users.filter(u => u.currentChannelId === channel.id)} />
+            </>
           </Tab>
         ))}
       </TabList>

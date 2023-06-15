@@ -5,6 +5,8 @@ import { Chat } from "./chat/Chat";
 import { makeStyles, shorthands } from "@fluentui/react-components";
 import TabConfig from "./TabConfig";
 import { Channel } from "./navigation/channels/Channel";
+import useGetMeeting from "../helpers/useGetMeeting";
+import { app } from "@microsoft/teams-js";
 // import { Person } from "@microsoft/mgt-react";
 const useGridExampleStyles = makeStyles({
   targetContainer: {
@@ -17,18 +19,20 @@ const useGridExampleStyles = makeStyles({
     // ...shorthands.margin("16px", "128px"),
   }
 })
+
 export default function Tab() {
   const { themeString } = useContext(TeamsFxContext);
   var classes = useGridExampleStyles();
   const [channels, setChannels] = useState<Channel[]>([{ name: "channel1", id: "1" }, { name: "channel2", id: "2" }, { name: "channel3", id: "3" }]);
   const [selectedChannel, setSelectedChannel] = useState<Channel | undefined>(undefined);
+
   return (
     <div
       className={themeString === "default" ? "light" : themeString === "dark" ? "dark" : "contrast"}
     >
       <div className={classes.targetContainer}>
-        <Navigation channels={channels} setSelectedChannel={setSelectedChannel}/>
-        <Chat selectedChannel={selectedChannel}/>
+        <Navigation channels={channels} setSelectedChannel={setSelectedChannel} />
+        <Chat selectedChannel={selectedChannel} />
       </div>
     </div>
   );
