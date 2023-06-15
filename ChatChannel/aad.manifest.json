@@ -31,6 +31,10 @@
                 {
                     "id": "OnlineMeetings.ReadWrite",
                     "type": "Scope"
+                },
+                {
+                    "id": "OnlineMeetingArtifact.Read.All",
+                    "type": "Scope"
                 }
             ]
         }
