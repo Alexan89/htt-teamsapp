@@ -8,7 +8,7 @@ import useGetMeeting from "../../helpers/useGetMeeting";
 
 const useStyles = makeStyles({
       root: {
-            width: "300px"
+            width: "500px"
       },
 });
 
