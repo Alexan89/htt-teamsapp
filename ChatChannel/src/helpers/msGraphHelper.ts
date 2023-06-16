@@ -26,19 +26,6 @@ const useGraphClient = () => {
         setClient(Client.initWithMiddleware(clientOptions));
     }, [teamsUserCredential]);
 
-    // const listUsers = (): Promise<any> => {
-    //     if (!token) return Promise.reject("No access token provided");
-    //     return fetch("https://graph.microsoft.com/v1.0/users", {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`,
-    //         },
-    //     })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         return data.value;
-    //     });
-    // };
-
     // const createMeeting = (): Promise<any> => {
     //     if (!token) return Promise.reject("No access token provided");
     //     return fetch("/me/onlineMeetings", {
